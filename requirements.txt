@@ -1,0 +1,8 @@
+autopep8==1.6.0
+future==0.18.2
+iso8601==1.0.2
+pycodestyle==2.8.0
+pyserial==3.5
+PyYAML==6.0
+toml==0.10.2
+websockets==10.2
