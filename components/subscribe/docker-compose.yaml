@@ -1,8 +1,9 @@
 version: "3.8"
 services:
-  data_collectors:
-    image: actuation
-    # environment:
-    #   - PORTS=2
+  data_subscriber:
+    image: suvambasak/subscribe:latest
+    environment:
+      - PORT=8080
+      - HOST=192.168.0.174
     devices:
       - "/dev/ttyACM0:/dev/ttyACM0"

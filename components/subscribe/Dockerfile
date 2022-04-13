@@ -1,5 +1,5 @@
 FROM python:3.9-slim-buster
 WORKDIR /usr/src/app
-RUN pip install pyserial
-COPY controller.py .
-CMD [ "python3", "/usr/src/app/controller.py"]
+RUN pip install pyserial websockets
+COPY subscribe.py .
+CMD [ "python3", "/usr/src/app/subscribe.py"]
