@@ -1,7 +1,8 @@
 import asyncio
-import websockets
 import json
 import os
+
+import websockets
 
 
 class Broker:
