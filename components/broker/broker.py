@@ -1,6 +1,5 @@
 import asyncio
 import json
-import os
 
 import websockets
 
@@ -87,10 +86,4 @@ class Broker:
 
 
 if __name__ == '__main__':
-
-    PORT = 8080
-
-    if "PORT" in os.environ:
-        PORT = int(os.environ["PORT"])
-
-    Broker(host='0.0.0.0', port=PORT)
+    Broker()
