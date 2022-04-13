@@ -1,9 +1,11 @@
 version: "3.8"
 services:
-  data_collectors:
-    image: sensing
+  data_publisher:
+    image: suvambasak/publish:latest
     environment:
       - PORTS=2
+      - PORT=8080
+      - HOST=192.168.0.174
     devices:
       - "/dev/ttyACM0:/dev/ttyACM0"
       - "/dev/ttyACM1:/dev/ttyACM1"
