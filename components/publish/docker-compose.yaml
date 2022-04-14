@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  data_publisher:
+    image: suvambasak/publish:latest
+    environment:
+      - PORTS=2
+      - PORT=7777
+      - HOST=192.168.0.203
+    devices:
+      - "/dev/ttyACM0:/dev/ttyACM0"
+      - "/dev/ttyACM1:/dev/ttyACM1"

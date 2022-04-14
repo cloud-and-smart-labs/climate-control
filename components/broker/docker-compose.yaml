@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  message_broker:
+    image: suvambasak/broker:latest
+    ports:
+      - "7777:80"
+
+  nginx_viewer:
+    image: suvambasak/view:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - message_broker
