@@ -4,6 +4,6 @@ services:
     image: suvambasak/subscribe:latest
     environment:
       - PORT=7777
-      - HOST=192.168.0.160
+      - HOST=192.168.0.187
     devices:
       - "/dev/ttyACM0:/dev/ttyACM0"
