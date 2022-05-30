@@ -9,14 +9,21 @@
 
 <body>
     <h3>Data view</h3>
+
+    <!-- OnClick subscribe -->
     <button onclick="sendMsg()">Connect</button>
+
     <br><br>
     <div id="data_view"></div>
 </body>
 
 <script>
+
+    // Messager broker URL
     URL = 'ws://' + window.location.hostname + ':7777'
     console.log(URL);
+
+    // Web socket
     const socket = new WebSocket(URL)
 
     socket.addEventListener('open', function (event) {
@@ -27,6 +34,7 @@
         console.log('Disconnected from the WS Server!')
     });
 
+    // Receive broadcast and print in webpage
     socket.addEventListener('message', function (event) {
         let json_data = JSON.parse(event.data)
         let data = ''
@@ -44,6 +52,7 @@
 
     });
 
+    // Subscribe
     const sendMsg = () => {
         socket.send('{"type": "subscribe"}');
     }

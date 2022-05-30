@@ -5,6 +5,10 @@ import websockets
 
 
 class Broker:
+    '''
+    Message broker class
+    '''
+
     def __init__(self, host="0.0.0.0", port=80) -> None:
         self._HOST = host
         self._PORT = port
@@ -14,6 +18,7 @@ class Broker:
         asyncio.run(self._server())
 
     async def _server(self) -> None:
+        'Starts connection handler'
         async with websockets.serve(
             self._connection_handler,
             self._HOST,
@@ -23,6 +28,7 @@ class Broker:
             await asyncio.Future()
 
     async def _connection_handler(self, connection: websockets) -> None:
+        'Connection handler checks the connection type (publisher/subscriber)'
 
         try:
             message = await connection.recv()
@@ -42,6 +48,8 @@ class Broker:
 
         elif connection_type["type"] == Broker.ConnectionType.SUBSCRIBE:
             print('Connection type : SUBSCRIBE')
+
+            # add to connection set
             self._subscriber_connection.add(connection)
             await self.subscriber(connection)
 
@@ -50,6 +58,8 @@ class Broker:
             connection.close()
 
     async def subscriber(self, subscriber_connection: websockets):
+        'Waits on subscriber connections'
+
         try:
             async for message in subscriber_connection:
                 print(f'subscriber : {message}')
@@ -62,6 +72,8 @@ class Broker:
             self._subscriber_connection.remove(subscriber_connection)
 
     async def publisher(self, publisher_connection: websockets):
+        'Get messages from publisher connection and broadcast to subscriber connections'
+
         try:
             async for message in publisher_connection:
                 current_data = (json.loads(message))
@@ -81,9 +93,13 @@ class Broker:
             print(f'publisher : {e}')
 
     class ConnectionType:
+        '''
+        All connection types
+        '''
         PUBLISH = 'publish'
         SUBSCRIBE = 'subscribe'
 
 
 if __name__ == '__main__':
+    # Start the message broker
     Broker()
