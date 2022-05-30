@@ -7,7 +7,7 @@ services:
     environment:
       - PORTS=2
       - PORT=7777
-      - HOST=192.168.0.203
+      - HOST=${IP}
     devices:
       - "/dev/ttyACM0:/dev/ttyACM0"
       - "/dev/ttyACM1:/dev/ttyACM1"
