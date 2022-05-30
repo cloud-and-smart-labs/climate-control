@@ -2,8 +2,6 @@ version: "3.8"
 services:
   data_subscriber:
     image: suvambasak/subscribe:latest
-    env_file:
-      - env
     environment:
       - PORT=7777
       - HOST=${IP}
